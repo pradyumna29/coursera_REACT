@@ -49,7 +49,7 @@ class DishDetail extends Component {
                                         <p>-- {comment.author} {}
                                                 {
                                                     new Intl.DateTimeFormat("en-US", {
-                                                            year:'numeric', month: 'short', day: '2-digit'
+                                                           year:'numeric', month: 'short', day: '2-digit'
                                                     }).format(new Date(comment.date))
                                                 }</p>
                                     </li>
@@ -57,11 +57,13 @@ class DishDetail extends Component {
                     }
                 );
                 return(
+                    <div className="container">
                     <div className="col-12 col-md-5 m-1">
                         <h4>Comments</h4>
                         <ul className="list-unstyled">
                             {coms}
                         </ul>
+                    </div>
                     </div>
                 );
             }
