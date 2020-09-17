@@ -1,9 +1,10 @@
 import React from 'react';
-import { Card, CardImg, CardBody, CardTitle, CardText} from 'reactstrap';
+import { Card, CardImg, CardBody, CardTitle, CardText, Breadcrumb, BreadcrumbItem} from 'reactstrap';
+import {Link} from 'react-router-dom';
 
 function RenderDish({ dish }) {
-    if (dish != null) {
-        return (
+    return (
+        <div className="col-12 col-md-5">
             <Card>
                 <CardImg width="100%" src={dish.image} alt={dish.name} />
                 <CardBody>
@@ -13,25 +14,18 @@ function RenderDish({ dish }) {
                     </CardText>
                 </CardBody>
             </Card>
-
-
-        );
-    } else {
-        return (
-            <div></div>
-        );
-    }
+        </div>      
+    );
 }
+
 
 function RenderComments({ comments }) {
     if (comments != null) {
-
         const coms = comments.map((comment) => {
-
             return (
                 <li key={comment.id}>
                     <p>{comment.comment}</p>
-                    <p>-- {comment.author} {}
+                    <p>-- {comment.author}, 
                         {
                             new Intl.DateTimeFormat("en-US", {
                                 year: 'numeric', month: 'short', day: '2-digit'
@@ -59,14 +53,23 @@ function RenderComments({ comments }) {
 }
 
         const DishDetail = (props) =>{            
-                if(props.selectedDish!= null){
-                    console.log(props.selectedDish);
+                if(props.dish!= null){
                     return(
-                        <div className="row">
-                            <div className="col-12 col-md-5 m-1">
-                                <RenderDish dish={props.selectedDish} />
+                        <div className="container">
+                            <div className="Row">
+                                <Breadcrumb>
+                                    <BreadcrumbItem><Link to="/menu">Menu</Link></BreadcrumbItem>
+                                    <BreadcrumbItem active>{props.dish.name}</BreadcrumbItem>
+                                </Breadcrumb>
+                                <div className="col-12">
+                                    <h3>{props.dish.name}</h3>
+                                    <hr />
+                                </div>
                             </div>
-                            <RenderComments comments={props.selectedDish.comments} />
+                            <div className="row">
+                                <RenderDish dish={props.dish} />
+                                <RenderComments comments={props.comments} />
+                            </div>
                         </div>
                     );
                 } else {
