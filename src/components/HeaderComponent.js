@@ -15,7 +15,7 @@ class Header extends Component {
     toggleNav() {
         this.setState({
             isNavOpen: !this.state.isNavOpen
-        });yra
+        });
     }
     toggleModal() {
         this.setState({
