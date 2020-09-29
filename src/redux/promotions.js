@@ -1,4 +1,3 @@
-import { PROMOTIONS } from '../shared/promotions';
 import * as ActionTypes from './ActionTypes';
 export const Promotions = (state = {
     isLoading: true,
